@@ -1,0 +1,16 @@
+{
+    "contents" : "require(ISLR)\nnames(Smarket)\nsummary(Smarket)\n?Smarket\npairs(Smarket,col=Smarket$Direction)\n# Logistic regression\nglm.fit=glm(Direction~Lag1+Lag2+Lag3+Lag4+Lag5+Volume,\n            data=Smarket,family=binomial)\nsummary(glm.fit)\nglm.probs=predict(glm.fit,type=\"response\") \nglm.probs[1:5]\nglm.pred=ifelse(glm.probs>0.5,\"Up\",\"Down\")\nattach(Smarket)\ntable(glm.pred,Direction)\nmean(glm.pred==Direction)\n# Make training and test set\ntrain = Year<2005\nglm.fit=glm(Direction~Lag1+Lag2+Lag3+Lag4+Lag5+Volume,\n            data=Smarket,family=binomial, subset=train)\nglm.probs=predict(glm.fit,newdata=Smarket[!train,],type=\"response\") \nglm.pred=ifelse(glm.probs >0.5,\"Up\",\"Down\")\nDirection.2005=Smarket$Direction[!train]\ntable(glm.pred,Direction.2005)\nmean(glm.pred==Direction.2005)\n#Fit smaller model\nglm.fit=glm(Direction~Lag1+Lag2,\n            data=Smarket,family=binomial, subset=train)\nglm.probs=predict(glm.fit,newdata=Smarket[!train,],type=\"response\") \nglm.pred=ifelse(glm.probs >0.5,\"Up\",\"Down\")\ntable(glm.pred,Direction.2005)\nmean(glm.pred==Direction.2005)\n106/(76+106)\n\n\nrequire(MASS)\n\n## Linear Discriminant Analysis\nlda.fit=lda(Direction~Lag1+Lag2,data=Smarket, subset=Year<2005)\nlda.fit\nplot(lda.fit)\nSmarket.2005=subset(Smarket,Year==2005)\nlda.pred=predict(lda.fit,Smarket.2005)\nlda.pred[1:5,]\nclass(lda.pred)\ndata.frame(lda.pred)[1:5,]\ntable(lda.pred$class,Smarket.2005$Direction)\nmean(lda.pred$class==Smarket.2005$Direction)\n\n## K-Nearest Neighbors\nlibrary(class)\n?knn\nattach(Smarket)\nXlag=cbind(Lag1,Lag2)\ntrain=Year<2005\nknn.pred=knn(Xlag[train,],Xlag[!train,],Direction[train],k=1)\ntable(knn.pred,Direction[!train])\nmean(knn.pred==Direction[!train])\n",
+    "created" : 1435259607406.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1296574761",
+    "id" : "4EAB2B53",
+    "lastKnownWriteTime" : 1435167341,
+    "path" : "~/stanford_stat_learning/ch4_classification.R",
+    "project_path" : "ch4_classification.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

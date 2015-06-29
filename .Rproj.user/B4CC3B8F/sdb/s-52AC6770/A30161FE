@@ -1,0 +1,16 @@
+{
+    "contents" : "library(MASS)\nlibrary(ISLR)\n### Simple linear regression\nnames(Boston)\n?Boston\nplot(medv~lstat,Boston)\nfit1=lm(medv~lstat,data=Boston)\nfit1\nsummary(fit1)\nabline(fit1,col=\"red\")\nnames(fit1)\nconfint(fit1)\npredict(fit1,data.frame(lstat=c(5,10,15)),interval=\"confidence\")\n### Multiple linear regression\nfit2=lm(medv~lstat+age,data=Boston)\nsummary(fit2)\nfit3=lm(medv~.,Boston)\nsummary(fit3)\npar(mfrow=c(2,2))\nplot(fit3)\nfit4=update(fit3,~.-age-indus)\nsummary(fit4)\n### Nonlinear terms and Interactions\nfit5=lm(medv~lstat*age,Boston)\nsummary(fit5)\nfit6=lm(medv~lstat +I(lstat^2),Boston); summary(fit6)\nattach(Boston)\npar(mfrow=c(1,1))\nplot(medv~lstat)\npoints(lstat,fitted(fit6),col=\"red\",pch=20)\nfit7=lm(medv~poly(lstat,4))\npoints(lstat,fitted(fit7),col=\"blue\",pch=20)\nplot(1:20,1:20,pch=1:20,cex=2)\n###Qualitative predictors\nfix(Carseats)\nnames(Carseats)\nsummary(Carseats)\nfit1=lm(Sales~.+Income:Advertising+Age:Price,Carseats)\nsummary(fit1)\ncontrasts(Carseats$ShelveLoc)\n###Writing R functions\nregplot=function(x,y){\n  fit=lm(y~x)\n  plot(x,y)\n  abline(fit,col=\"red\")\n}\nattach(Carseats)\nregplot(Price,Sales)\nregplot=function(x,y,...){\n  fit=lm(y~x)\n  plot(x,y,...)\n  abline(fit,col=\"red\")\n}\nregplot(Price,Sales,xlab=\"Price\",ylab=\"Sales\",col=\"blue\",pch=20)\n\n\n\n\n",
+    "created" : 1435259597452.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3640632489",
+    "id" : "A30161FE",
+    "lastKnownWriteTime" : 1435167333,
+    "path" : "~/stanford_stat_learning/ch3_regression.R",
+    "project_path" : "ch3_regression.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

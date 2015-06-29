@@ -1,0 +1,16 @@
+{
+    "contents" : "### vectors, data, matrices, subsetting\nx=c(2,7,5)\nx\ny=seq(from=4,length=3,by=3)\n?seq\ny\nx+y\nx/y\nx^y\nx[2]\nx[2:3]\nx[-2]\nx[-c(1,2)]\nz=matrix(seq(1,12),4,3)\nz\nz[3:4,2:3]\nz[,2:3]\nz[,1]\nz[,1,drop=FALSE]\ndim(z)\nls()\nrm(y)\nls()\n### Generating random data, graphics\nx=runif(50)\ny=rnorm(50)\nplot(x,y)\nplot(x,y,xlab=\"Random Uniform\",ylab=\"Random Normal\",pch=\"*\",col=\"blue\")\npar(mfrow=c(2,1))\nplot(x,y)\nhist(y)\npar(mfrow=c(1,1))\n### Reading in data\nAuto=read.csv(\"Auto.csv\")\npwd()\nAuto=read.csv(\"../Auto.csv\")\nnames(Auto)\ndim(Auto)\nclass(Auto)\nsummary(Auto)\nplot(Auto$cylinders,Auto$mpg)\nplot(Auto$cyl,Auto$mpg)\nattach(Auto)\nsearch()\nplot(cylinders,mpg)\ncylinders=as.factor(cylinders)\nplot(cylinders,mpg,xlab=\"Cylinders\",ylab=\"Mpg\",col=\"red\")\npdf(file=\"../mpg.pdf\")\nplot(cylinders,mpg,xlab=\"Cylinders\",ylab=\"Mpg\",col=\"red\")\ndev.off()\npairs(Auto,col=\"brown\")\npairs(mpg~cylinders+acceleration+weight,Auto)\nq()",
+    "created" : 1435167354509.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "494740398",
+    "id" : "9A9E88DC",
+    "lastKnownWriteTime" : 1435167317,
+    "path" : "~/stanford_stat_learning/intro_to_R.R",
+    "project_path" : "intro_to_R.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
